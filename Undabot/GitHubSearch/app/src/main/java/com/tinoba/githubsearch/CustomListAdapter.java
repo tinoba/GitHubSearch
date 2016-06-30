@@ -12,43 +12,56 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by tinoba on 28.6.2016..
  */
 public class CustomListAdapter extends ArrayAdapter<Items>{
+
     ArrayList<Items> listaRepozitorija;
-    TextView txtImeRepozitorija;
-    TextView txtImeAutora;
-    TextView txtBrojForkova;
-    TextView txtBrojIssuea;
-    TextView txtBrojPratitelja;
     Context context;
     public CustomListAdapter(Context context, ArrayList<Items> listaRepozitorija) {
         super(context, R.layout.query_row,listaRepozitorija);
         this.listaRepozitorija = listaRepozitorija;
         this.context = context;
     }
-
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-        View customView = layoutInflater.inflate(R.layout.query_row,parent,false);
-        txtImeRepozitorija = (TextView)customView.findViewById(R.id.txtImeRepozitorija);
-        txtImeAutora = (TextView)customView.findViewById(R.id.txtImeAutora);
-        txtBrojForkova = (TextView)customView.findViewById(R.id.txtBrojForkova);
-        txtBrojPratitelja = (TextView)customView.findViewById(R.id.txtBrojPratitelja);
-        txtBrojIssuea = (TextView)customView.findViewById(R.id.txtBrojIssuea);
-        txtImeRepozitorija.setText(listaRepozitorija.get(position).getName());
-        txtImeAutora.setText(listaRepozitorija.get(position).getOwner().getLogin());
-        txtBrojForkova.setText(String.valueOf(listaRepozitorija.get(position).getForks_count()));
-        txtBrojPratitelja.setText(String.valueOf(listaRepozitorija.get(position).getWatchers_count()));
-        txtBrojIssuea.setText(String.valueOf(listaRepozitorija.get(position).getOpen_issues()));
-        ImageView imageView = (ImageView) customView.findViewById(R.id.imgSlika);
-//Loading image from below url into imageView
+    public View getView(int position, View view, ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        ViewHolder holder;
+        if (view != null) {
+            holder = (ViewHolder) view.getTag();
+        } else {
+            view = inflater.inflate(R.layout.query_row, parent, false);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
+        }
 
+        holder.txtImeRepozitorija.setText(listaRepozitorija.get(position).getName());
+        holder.txtImeAutora.setText(listaRepozitorija.get(position).getOwner().getLogin());
+        holder.txtBrojForkova.setText(String.valueOf(listaRepozitorija.get(position).getForks_count()));
+        holder.txtBrojIssuea.setText(String.valueOf(listaRepozitorija.get(position).getOpen_issues()));
+        holder.txtBrojPratitelja.setText(String.valueOf(listaRepozitorija.get(position).getWatchers_count()));
         Picasso.with(context)
                 .load(listaRepozitorija.get(position).getOwner().getAvatar_url())
-                .into(imageView);
-        return customView;
+                .into(holder.imgSlika);
+
+        return view;
+
     }
+    static class ViewHolder {
+        @BindView(R.id.txtImeRepozitorija) TextView txtImeRepozitorija;
+        @BindView(R.id.txtImeAutora) TextView txtImeAutora;
+        @BindView(R.id.txtBrojForkova) TextView txtBrojForkova;
+        @BindView(R.id.txtBrojIssuea) TextView txtBrojIssuea;
+        @BindView(R.id.txtBrojPratitelja) TextView txtBrojPratitelja;
+        @BindView(R.id.imgSlika) ImageView imgSlika;
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+
 }
+
