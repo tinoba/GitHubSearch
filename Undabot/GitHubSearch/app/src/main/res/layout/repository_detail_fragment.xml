@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Large Text"
         android:id="@+id/txtName"
         android:layout_alignParentTop="true"
@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/txtBrojPratitelja"
         android:layout_below="@+id/txtName"
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Broj pratitelja"
         android:id="@+id/textView3"
         android:layout_alignBottom="@+id/txtBrojPratitelja"
@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Ime repozitorija"
         android:id="@+id/textView4"
         android:layout_alignParentTop="true"
@@ -43,7 +43,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Broj forkova"
         android:id="@+id/textView6"
         android:layout_below="@+id/textView3"
@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/txtBrojForkova"
         android:layout_below="@+id/txtBrojPratitelja"
@@ -62,7 +62,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Broj Issuea"
         android:id="@+id/textView8"
         android:layout_below="@+id/textView6"
@@ -71,7 +71,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/txtBrojIssuea"
         android:layout_below="@+id/txtBrojForkova"
@@ -80,7 +80,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Programski jezik"
         android:id="@+id/textView10"
         android:layout_below="@+id/textView8"
@@ -89,7 +89,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/txtPrJezik"
         android:layout_below="@+id/txtBrojIssuea"
@@ -99,7 +99,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Datum kreiranja"
         android:id="@+id/textView11"
         android:layout_below="@+id/textView10"
@@ -108,7 +108,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/txtDatumKreiranja"
         android:layout_below="@+id/txtPrJezik"
@@ -118,7 +118,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Datum izmjene"
         android:id="@+id/textView12"
         android:layout_below="@+id/textView11"
@@ -128,7 +128,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/txtDatumIzmjene"
         android:layout_below="@+id/txtDatumKreiranja"
@@ -138,7 +138,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Ime autora"
         android:id="@+id/textView13"
         android:layout_alignTop="@+id/txtImeAutora"
@@ -147,7 +147,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Large Text"
         android:id="@+id/txtImeAutora"
         android:layout_centerVertical="true"
@@ -157,16 +157,16 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/imageView"
-        android:layout_alignEnd="@+id/textView3"
+        android:id="@+id/imgSlikaAutora"
         android:layout_below="@+id/textView12"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/txtImeAutora" />
+        android:layout_above="@+id/txtImeAutora"
+        android:layout_alignEnd="@+id/textView12" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Tip korisnika"
         android:id="@+id/textView14"
         android:layout_below="@+id/textView13"
@@ -175,29 +175,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/txtTip"
         android:layout_below="@+id/txtImeAutora"
         android:layout_alignStart="@+id/txtImeAutora"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="ID"
-        android:id="@+id/textView15"
-        android:layout_below="@+id/textView14"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/txtID"
-        android:layout_below="@+id/txtTip"
-        android:layout_alignStart="@+id/txtTip"
-        android:layout_alignEnd="@+id/txtTip" />
 </RelativeLayout>

@@ -9,9 +9,10 @@ import retrofit2.Response;
  */
 public class PresenterLayer implements PrecenterInteractor {
     private NetworkService service;
-    private RepositorySearchActivity view;
+   // private RepositorySearchActivity view;
+    private QueryFragment view;
 
-    public PresenterLayer(RepositorySearchActivity view, NetworkService service){
+    public PresenterLayer(QueryFragment view, NetworkService service){
         this.view = view;
         this.service = service;
 

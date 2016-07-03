@@ -1,28 +1,18 @@
 package com.tinoba.githubsearch;
 
 
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.util.Log;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.OnItemClick;
-import butterknife.OnItemSelected;
-import retrofit2.Response;
 
-public class RepositorySearchActivity extends AppCompatActivity {
+public class RepositorySearchActivity extends AppCompatActivity implements QueryFragment.GetDataInterface{
+    /*
     private NetworkService service;
     private PrecenterInteractor presenter;
     @BindView(R.id.inputQuery) EditText inputQuery;
@@ -34,21 +24,32 @@ public class RepositorySearchActivity extends AppCompatActivity {
         String query = inputQuery.getText().toString();
         String sort = spinSort.getSelectedItem().toString();
         presenter.loadRetroData(query,sort);
+
+        Fragment queryFragment = new QueryFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.rltvLayout, queryFragment);
+        fragmentTransaction.commit();
     }
     @OnItemClick(R.id.listRepositories)
     void onItemClicked(int position) {
-        Fragment detailFragment = new RepositoryDetailsFragment();
-        Integer fragmentId = R.id.fragmentDetails;
+        Fragment repositoryDetailsFragment = new RepositoryDetailsFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(fragmentId, detailFragment);
+        fragmentTransaction.replace(R.id.rltvLayout, repositoryDetailsFragment);
         fragmentTransaction.commit();
         Toast.makeText(this,"bok "+position,Toast.LENGTH_LONG).show();
-    }
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository_search);
+        Fragment queryFragment = new QueryFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.rltLayout, queryFragment)
+                .commit();
+        /*
         ButterKnife.bind(this);
         ArrayAdapter<String> adp1=new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,str);
@@ -56,13 +57,23 @@ public class RepositorySearchActivity extends AppCompatActivity {
         spinSort.setAdapter(adp1);
 
         service = ((RxApplication)getApplication()).getNetworkService();
-        presenter = new PresenterLayer(this, service);
+        presenter = new PresenterLayer(this, service);*/
     }
-
+/*
     protected void showRetroResults(Response<Repository> response){
         ListAdapter customAdapter = new CustomListAdapter(RepositorySearchActivity.this,response.body().getItems());
         listRepositories.setAdapter(customAdapter);
 
-    }
+    }*/
 
+    @Override
+    public void getDataList(Items item) {
+       // Log.i("TAG",String.valueOf(item.getName()));
+
+        RepositoryDetailsFragment repositoryDetailsFragment = RepositoryDetailsFragment.newInstance(item);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.rltLayout, repositoryDetailsFragment)
+                .addToBackStack("tag").commit();
+    }
 }
