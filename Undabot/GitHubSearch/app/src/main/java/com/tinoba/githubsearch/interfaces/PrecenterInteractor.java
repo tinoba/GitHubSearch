@@ -1,4 +1,4 @@
-package com.tinoba.githubsearch;
+package com.tinoba.githubsearch.interfaces;
 
 /**
  * Created by tinoba on 30.6.2016..

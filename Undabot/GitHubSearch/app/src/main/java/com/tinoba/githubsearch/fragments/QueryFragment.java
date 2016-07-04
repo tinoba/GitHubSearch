@@ -1,41 +1,38 @@
-package com.tinoba.githubsearch;
+package com.tinoba.githubsearch.fragments;
 
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.app.ListFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import com.tinoba.githubsearch.Network.NetworkService;
+import com.tinoba.githubsearch.POJO.Items;
+import com.tinoba.githubsearch.POJO.Repository;
+import com.tinoba.githubsearch.interfaces.PrecenterInteractor;
+import com.tinoba.githubsearch.helpers.PresenterLayer;
+import com.tinoba.githubsearch.R;
+import com.tinoba.githubsearch.helpers.RxApplication;
+import com.tinoba.githubsearch.adapters.CustomListAdapter;
 
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnItemClick;
-import butterknife.OnTextChanged;
 import retrofit2.Response;
 
 /**
  * Created by tinoba on 1.7.2016..
  */
 public class QueryFragment extends Fragment {
-    private static final String DESCRIBABLE_KEY = "listKey";
     ArrayList<Items> itemsList;
     GetDataInterface getDataInterface;
     private NetworkService service;
@@ -47,26 +44,12 @@ public class QueryFragment extends Fragment {
     @BindView(R.id.listRepositories)
     ListView listRepositories;
     final String[] str={"stars","forks","updated"};
-    @OnClick(R.id.btnSearch)
-    public void clicked() {
-        String query = inputQuery.getText().toString();
-        String sort = spinSort.getSelectedItem().toString();
-        presenter.loadRetroData(query,sort);
 
-    }
-    public void onImgClick(int position) {
-        getDataInterface.getDataList(itemsList.get(position));
-
-    }
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.repository_query_fragment,container,false);
         ButterKnife.bind(this,view);
-
-        ArrayAdapter<String> adp1=new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1,str);
-        adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinSort.setAdapter(adp1);
+        setSpinner();
         if(itemsList!= null){
             ListAdapter customAdapter = new CustomListAdapter(getActivity(),itemsList,this);
             listRepositories.setAdapter(customAdapter);
@@ -75,8 +58,20 @@ public class QueryFragment extends Fragment {
         presenter = new PresenterLayer(this, service);
         return view;
     }
+
     public interface GetDataInterface{
-        public void  getDataList(Items item);
+        public void  getDataList(Items item,int id);
+    }
+
+    @OnClick(R.id.btnSearch)
+    public void clicked() {
+        String query = inputQuery.getText().toString();
+        String sort = spinSort.getSelectedItem().toString();
+        presenter.loadRetroData(query,sort);
+    }
+
+    public void onItemClick(int position, int id) {
+        getDataInterface.getDataList(itemsList.get(position),id);
     }
 
     @Override
@@ -89,7 +84,7 @@ public class QueryFragment extends Fragment {
         }
     }
 
-    protected void showRetroResults(Response<Repository> response){
+    public void showRetroResults(Response<Repository> response){
         itemsList = response.body().getItems();
         setAdapter();
 
@@ -97,6 +92,12 @@ public class QueryFragment extends Fragment {
     private void setAdapter(){
         ListAdapter customAdapter = new CustomListAdapter(getActivity(),itemsList,this);
         listRepositories.setAdapter(customAdapter);
+    }
+    private void setSpinner(){
+        ArrayAdapter<String> adp1=new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1,str);
+        adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinSort.setAdapter(adp1);
     }
 
 }

@@ -1,9 +1,11 @@
-package com.tinoba.githubsearch;
+package com.tinoba.githubsearch.fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,23 +13,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-
-import java.io.Serializable;
+import com.tinoba.githubsearch.POJO.Items;
+import com.tinoba.githubsearch.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by tinoba on 30.6.2016..
  */
 public class RepositoryDetailsFragment extends Fragment{
 
-
+    GetUserInterface getUserInterface;
     private static final String DESCRIBABLE_KEY = "key";
     private Items mitem;
 
 
-    @BindView(R.id.txtName)
+    @BindView(R.id.txtLogin)
     TextView txtName;
     @BindView(R.id.txtBrojPratitelja)
     TextView txtBrojPratitelja;
@@ -72,6 +75,15 @@ public class RepositoryDetailsFragment extends Fragment{
                 .load(item.getOwner().getAvatar_url())
                 .into(imgSlikaAutora);
     }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try{
+            getUserInterface = (GetUserInterface) activity;
+        } catch (ClassCastException e){
+            throw new ClassCastException(activity.toString() + "must implement interface");
+        }
+    }
 
     public static RepositoryDetailsFragment newInstance(Items item) {
         RepositoryDetailsFragment fragment = new RepositoryDetailsFragment();
@@ -79,5 +91,18 @@ public class RepositoryDetailsFragment extends Fragment{
         bundle.putSerializable(DESCRIBABLE_KEY,item);
         fragment.setArguments(bundle);
         return fragment;
+    }
+    @OnClick(R.id.imgSlikaAutora)
+    public void imgClicked(){
+        getUserInterface.getUser(mitem);
+    }
+    @OnClick(R.id.btnBrowser)
+    public void browserClicked(View view){
+        String url = mitem.getUrl();
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url));
+        getActivity().startActivity(browserIntent);
+    }
+    public interface GetUserInterface{
+        public void  getUser(Items item);
     }
 }

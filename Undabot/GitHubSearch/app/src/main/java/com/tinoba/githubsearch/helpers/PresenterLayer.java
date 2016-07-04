@@ -1,4 +1,9 @@
-package com.tinoba.githubsearch;
+package com.tinoba.githubsearch.helpers;
+
+import com.tinoba.githubsearch.Network.NetworkService;
+import com.tinoba.githubsearch.POJO.Repository;
+import com.tinoba.githubsearch.fragments.QueryFragment;
+import com.tinoba.githubsearch.interfaces.PrecenterInteractor;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -9,7 +14,6 @@ import retrofit2.Response;
  */
 public class PresenterLayer implements PrecenterInteractor {
     private NetworkService service;
-   // private RepositorySearchActivity view;
     private QueryFragment view;
 
     public PresenterLayer(QueryFragment view, NetworkService service){

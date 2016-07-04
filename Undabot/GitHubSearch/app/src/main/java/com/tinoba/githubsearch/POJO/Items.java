@@ -1,7 +1,4 @@
-package com.tinoba.githubsearch;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package com.tinoba.githubsearch.POJO;
 
 import java.io.Serializable;
 
@@ -18,30 +15,16 @@ public class Items implements Serializable {
     String language;
     String created_at;
     String updated_at;
+    String url;
 
 
-/*
-    public Items(Parcel in){
-        name = in.readString();
-        watchers_count = in.readInt();
-        forks_count = in.readInt();
-        open_issues = in.readInt();
-        owner = in.readParcelable(Owner.class.getClassLoader());
+    public String getUrl() {
+        return url;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void setUrl(String url) {
+        this.url = url;
     }
-
-    @Override
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeString(name);
-        out.writeInt(watchers_count);
-        out.writeInt(forks_count);
-        out.writeInt(open_issues);
-        out.writeParcelable(owner, flags);
-    }*/
 
     public String getUpdated_at() {
         return updated_at;

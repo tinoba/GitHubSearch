@@ -1,4 +1,6 @@
-package com.tinoba.githubsearch;
+package com.tinoba.githubsearch.Network;
+
+import com.tinoba.githubsearch.API.GitHubRetrofitAPI;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
